@@ -1,4 +1,4 @@
-# Awesome graphics with code
+## Awesome graphics with code
 
 ## 1. Where NBA teams stand on in-arena attendance
 
