@@ -3,7 +3,7 @@ library(dplyr)
 library(stringr)
 library(gt)
 
-nba <- read_csv("nba-arena-attendance/nba_arena_attendance.csv")
+nba <- read_csv("https://raw.githubusercontent.com/MonyakeR/awesome-graphics/main/nba-arena-attendance/nba_arena_attendance.csv")
 
 names(nba) <- c("team","fans_allowed", "maximum_capacity")
 
@@ -38,6 +38,8 @@ nba <- nba %>%
   mutate(team_logo = paste0((tolower(word(team, -1))), "-logo.svg")) %>% 
   select(team_logo, dplyr::everything())
 
+images_url <- "https://raw.githubusercontent.com/MonyakeR/awesome-graphics/main/nba-arena-attendance/images/"
+
 nba_tbl <- gt(nba) %>% 
   fmt_number(
     columns = c(fans_allowed, maximum_capacity),
@@ -52,13 +54,14 @@ nba_tbl <- gt(nba) %>%
   text_transform(
     locations = cells_body(columns = c(team_logo)),
     fn = function(x) {
-      local_image(
-        filename = paste0("images/", x)
+      web_image(
+        url =  paste0(images_url, x)
       )
     }
   ) %>% 
   cols_label(
-    team = "Team",
+    team_logo = "Team",
+    team = " ",
     fans_allowed = "Fans Allowed",
     maximum_capacity = "Maximum Capacity",
     proportion_bar = "Percentage Allowed"
@@ -68,31 +71,46 @@ nba_tbl <- gt(nba) %>%
     columns = c(fans_allowed, maximum_capacity)
   ) %>% 
   opt_align_table_header(align = "left") %>% 
-  opt_row_striping()
+  opt_row_striping() %>% 
+  tab_style(
+    style = list(
+      cell_borders(
+        sides = "bottom",
+        weight = px(3)
+      )
+    ),
+    locations = list(
+      cells_column_labels(
+        columns = gt::everything()
+      )
+    )
+  ) %>% 
+  tab_style(
+    style = list(
+      cell_borders(
+        sides = "top",
+        weight = px(3),
+        color = "white" # remove subtitle bottom border.
+      )
+    ),
+    locations = list(
+      cells_column_labels(
+        columns = gt::everything()
+      )
+    )
+  ) %>% 
+  tab_options(
+    table.border.top.style = "hidden",
+    table.border.bottom.style = "hidden"
+  ) %>% 
+  tab_source_note(
+    source_note = md("Source: PerThirtySix, NBA")
+    )
 
 nba_tbl
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #
+
