@@ -109,8 +109,7 @@ nba_tbl <- gt(nba) %>%
 
 nba_tbl
 
-
-
-
+# safe the table
+gtsave(nba_tbl, "nba_arena_attendance.html")
 #
 
