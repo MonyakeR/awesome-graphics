@@ -1,20 +1,98 @@
 library(readr)
 library(dplyr)
+library(stringr)
 library(gt)
 
 nba <- read_csv("nba-arena-attendance/nba_arena_attendance.csv")
 
+names(nba) <- c("team","fans_allowed", "maximum_capacity")
+
+# function for creating the bar chart in the table, adapted from Thomas Mock
+# https://themockup.blog/static/gt-cookbook-advanced.html
+bar_chart <- function(label, height = "15px",fill = "#3B82F6", background = "white") {
+  bar <- glue::glue(
+    "<div style='background:{fill};width:{label}%;height:{height};'></div>"
+  )
+  chart <- glue::glue(
+    "<div style='flex-grow:1;margin-left:8px;background:{background};height:{height};'>{bar}</div>"
+  )
+  glue::glue(
+    "<div style='display:flex;align-items:left';>{label}% {chart}</div>"
+  ) %>%
+    gt::html()
+  
+}
+
+# Calculate the proportion of fans allowed 
 nba <- nba %>% 
-  mutate(proportion = `Fans Allowed`/`Maximum Capacity`)
+  mutate(proportion = round((fans_allowed / maximum_capacity), 2), # for sorting
+         proportion_bar = purrr::map(
+           round((fans_allowed / maximum_capacity), 2),
+           ~bar_chart(label = .x * 100, fill = "#3B82F6", background = "#EBF5FB")
+         )) %>% 
+  arrange(desc(proportion)) %>% 
+  select(-proportion)
+
+# Add logo names
+nba <- nba %>%
+  mutate(team_logo = paste0((tolower(word(team, -1))), "-logo.svg")) %>% 
+  select(team_logo, dplyr::everything())
 
 nba_tbl <- gt(nba) %>% 
   fmt_number(
-    columns = c(`Fans Allowed`, `Maximum Capacity`),
-    sep_mark = ","
-  ) %>% 
-  fmt_percent(
-    columns = proportion,
+    columns = c(fans_allowed, maximum_capacity),
+    sep_mark = ",",
     decimals = 0
-  )
+  ) %>% 
+  tab_header(
+    title = "The number of fans allowed at each stadium in the 2021 NBA Playoffs",
+    subtitle = md("*Last updated June 01, 2021*")
+  ) %>% 
+  # add logos
+  text_transform(
+    locations = cells_body(columns = c(team_logo)),
+    fn = function(x) {
+      local_image(
+        filename = paste0("images/", x)
+      )
+    }
+  ) %>% 
+  cols_label(
+    team = "Team",
+    fans_allowed = "Fans Allowed",
+    maximum_capacity = "Maximum Capacity",
+    proportion_bar = "Percentage Allowed"
+  ) %>% 
+  cols_align(
+    align = "left",
+    columns = c(fans_allowed, maximum_capacity)
+  ) %>% 
+  opt_align_table_header(align = "left") %>% 
+  opt_row_striping()
 
 nba_tbl
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
