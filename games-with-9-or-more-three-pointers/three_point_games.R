@@ -1,17 +1,15 @@
 library(dplyr)
+library(readr)
 library(gt)
 
 
-# player data
-player <- c("Stephen Curry", "James Harden", "Damian Lillard", "Klay Thompson", "JR Smith", "Kobe Bryant")
-games <- c(37, 9, 9, 7, 5, 4)
-
-three_pointers <- tibble(player, games)
+# Load the data
+three_pointers <- read_csv("games-with-9-or-more-three-pointers/games_with_9_or_more_three_pointers.csv")
 
 
 # function for creating the bar chart in the table, adapted from Thomas Mock
 # https://themockup.blog/static/gt-cookbook-advanced.html
-bar_chart <- function(label, height = "15px",fill = "#3B82F6", background = "white") {
+bar_chart <- function(label, height = "15px",fill = "#00bfc4") {
   bar <- glue::glue(
     "<div style='background:{fill};width:{label}px;height:{height};'></div>"
   )
@@ -24,18 +22,18 @@ bar_chart <- function(label, height = "15px",fill = "#3B82F6", background = "whi
 
 three_pointers <- three_pointers %>% 
   mutate(
-    #games_var = round(games/max(games) * 100,0),
+    games_var = round(games/max(games) * 100,0),
     no_of_games = purrr::map(
-      games,
+      games_var,
       ~bar_chart(label = .x)
     )
   ) %>% 
-  select(player, games, no_of_games)
+  select(names, games, no_of_games)
 
 three_pointers_tbl <- three_pointers %>% 
   gt() %>% 
   cols_label(
-    player = "Name",
+    names = "Name",
     games = "Number of Games",
     no_of_games = " "
   ) %>% 
