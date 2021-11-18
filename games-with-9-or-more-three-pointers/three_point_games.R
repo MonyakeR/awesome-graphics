@@ -1,14 +1,20 @@
 library(dplyr)
 library(readr)
+library(stringr)
 library(gt)
 
 
 # Load the data
 three_pointers <- read_csv("games-with-9-or-more-three-pointers/games_with_9_or_more_three_pointers.csv")
 
+# include the name of the images
+three_pointers <- three_pointers %>% 
+  mutate(player = paste0((tolower(word(names, -1))), ".png"))
 
-# function for creating the bar chart in the table, adapted from Thomas Mock
-# https://themockup.blog/static/gt-cookbook-advanced.html
+images_url <- "https://raw.githubusercontent.com/MonyakeR/awesome-graphics/main/games-with-9-or-more-three-pointers/images/"
+
+
+# function to create bar chart
 bar_chart <- function(label, height = "15px",fill = "#00bfc4") {
   bar <- glue::glue(
     "<div style='background:{fill};width:{label}px;height:{height};'></div>"
@@ -20,6 +26,7 @@ bar_chart <- function(label, height = "15px",fill = "#00bfc4") {
   
 }
 
+# create a column for the bar chart
 three_pointers <- three_pointers %>% 
   mutate(
     games_var = round(games/max(games) * 100,0),
@@ -28,10 +35,20 @@ three_pointers <- three_pointers %>%
       ~bar_chart(label = .x)
     )
   ) %>% 
-  select(names, games, no_of_games)
+  select(player, names, games, no_of_games)
 
 three_pointers_tbl <- three_pointers %>% 
+  filter(games >= 3) %>% 
   gt() %>% 
+  # add player images
+  text_transform(
+    locations = cells_body(columns = c(player)),
+    fn = function(x) {
+      web_image(
+        url =  paste0(images_url, x)
+      )
+    }
+  ) %>% 
   cols_label(
     names = "Name",
     games = "Number of Games",
@@ -42,7 +59,7 @@ three_pointers_tbl <- three_pointers %>%
   ) %>% 
   cols_width(
     games ~ px(150)
-  )
+  ) 
   
 
 # show the table
