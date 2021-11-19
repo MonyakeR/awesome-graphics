@@ -66,7 +66,7 @@ three_pointers_tbl <- three_pointers %>%
   ) %>% 
   tab_header(
     title = md("**Most regular-season games by a player with 9 or more 3 pointers made**"),
-    subtitle = "Stephen Curry has the most with 37 games. The next five players on the list have 34 such games Combined"
+    subtitle = "Stephen Curry has the most with 38 games. The next five players on the list have 34 such games Combined"
   ) %>% 
   opt_align_table_header(align = "left") %>% 
   tab_style(
@@ -107,7 +107,7 @@ three_pointers_tbl <- three_pointers %>%
     source_note = "Only players with 3 or more games are icluded"
   ) %>% 
   tab_source_note(
-    source_note = md("Last updated **November 18, 2021**")
+    source_note = md("Last updated **November 19, 2021**")
   )
   
 # show the table
