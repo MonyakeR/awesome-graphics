@@ -13,3 +13,7 @@
 ![Money  owed by graduates to universities plot](sa-student-debt/student_debt.png) 
 
 ![Money  owed by graduates to universities table](sa-student-debt/student_debt_tbl.png)
+
+# 4. South Africa’s unemployment rate hits new record of 34.9%
+
+![South Africa Unemployment plot](sa-unemployment/sa_unemployment.png)
