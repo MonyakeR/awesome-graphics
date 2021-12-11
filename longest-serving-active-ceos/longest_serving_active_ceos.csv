@@ -1,10 +1,10 @@
-CEO,Duration,Since,Company
-Warren Buffet,51,1970,Berkshire Hathaway
-Alan B. Miller,42,1979,Universal Health Services
-Stephen Schwarzman,36,1985,Blackstone Group
-James Herbert,35,1986,First Republic Bank
-Richard Fain,32,1988,Royal Caribbean Cruises
-Leonard Schleifer,32,1988,Regeneron
-Jensen Huang,28,1993,Nvidia
-Richard Fairbank,27,1994,Capital One
-Jamie Dimon,16,2005,JP Morgan
+CEO,Company,Since,Duration
+Warren Buffet,Berkshire Hathaway,1970,51
+Alan B. Miller,Universal Health Services,1979,42
+Stephen Schwarzman,Blackstone Group,1985,36
+James Herbert,First Republic Bank,1986,35
+Richard Fain,Royal Caribbean Cruises,1988,32
+Leonard Schleifer,Regeneron,1988,32
+Jensen Huang,Nvidia,1993,28
+Richard Fairbank,Capital One,1994,27
+Jamie Dimon,JP Morgan,2005,16
