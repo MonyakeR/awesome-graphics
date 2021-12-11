@@ -17,3 +17,6 @@
 # 4. South Africa’s unemployment rate hits new record of 34.9%
 
 ![South Africa Unemployment plot](sa-unemployment/sa_unemployment.png)
+
+# 5. Longest Serving Active CEOs in the S&P 500
+![CEO tenure table](longest-serving-active-ceos/longest_serving_active_ceos.png)
