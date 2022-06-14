@@ -114,5 +114,5 @@ three_pointers_tbl <- three_pointers %>%
 three_pointers_tbl
 
 # safe the table
-gtsave(three_pointers_tbl, "three_pointers_games.html")
+gtsave(three_pointers_tbl, "three_pointers_games.png")
 

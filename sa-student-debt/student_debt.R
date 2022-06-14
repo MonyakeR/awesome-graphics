@@ -143,4 +143,4 @@ student_debt_tbl <- student_debt %>%
 student_debt_tbl
 
 # safe the table
-gtsave(student_debt_tbl, "student_debt_tbl.html")
+gtsave(student_debt_tbl, "student_debt_tbl.png")
