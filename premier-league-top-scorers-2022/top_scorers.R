@@ -1,22 +1,32 @@
 library(tidyverse)
 library(gt)
 library(gtExtras)
+library(stringr)
 
 # load the data
 top_scorers <- read_csv("premier-league-top-scorers-2022/data/Premier League Top Scorers (2021-2022) .csv")
 
+# images
+images_url <- "https://raw.githubusercontent.com/MonyakeR/awesome-graphics/main/premier-league-top-scorers-2022/images/"
+
 # creating the table
 tbl <- top_scorers %>% 
-  mutate(non_penalty_goals = Goals - PKs) %>% 
+  mutate(
+    non_penalty_goals = Goals - PKs,
+    last_name = str_extract(Player, '[^ ]+$'),
+    last_name = if_else(last_name=="Bruyne", "DeBruyne", last_name),
+    last_name = paste0(images_url, last_name, ".png"),
+    PKs = ifelse(PKs==0, NA, PKs)
+  ) %>% 
   filter(Goals > 12) %>% 
-  group_by(Player, Club, Goals, Assists, Matches, Mins) %>% 
+  group_by(last_name, Player, Club, Goals, Assists, Matches, Mins) %>% 
   summarise(all_goals = list(c(non_penalty_goals, PKs)), .groups = "drop") %>%
-  select(Player, Club, Goals, all_goals, everything()) %>% 
+  select(last_name, Player, Club, Goals, all_goals, everything()) %>% 
   arrange(desc(Goals)) %>% 
   gt() %>% 
   tab_header(
     title = "Premier League Top Scorers (2021-2022)",
-    subtitle = "Salah and Son share Golden Boot with 23 goals scored"
+    subtitle = "Salah and Son share Golden Boot with 23 goals scored. While 5 of Salah's goals come from the penalty spot, none of Son’s 23 goals have come via the penalty spot."
   ) %>% 
   gt_merge_stack(col1 = Player, col2 = Club) %>% 
   gt_plt_bar_stack(
@@ -33,6 +43,7 @@ tbl <- top_scorers %>%
     sep_mark = ","
   ) %>% 
   cols_width(
+    last_name ~ px(50),
     Matches ~px(100),
     Player ~px(150),
     Goals ~px(80),
@@ -50,7 +61,16 @@ tbl <- top_scorers %>%
     align = c("left"),
     columns = c(Assists, Matches, Mins)
   ) %>% 
+  gt_img_rows(columns = last_name) %>%
+  cols_label(last_name = "") %>%
+  tab_source_note(
+    source_note = md("Source: *premierleague.com*")
+  ) %>% 
+  tab_source_note(
+    source_note = md("**Table:** @RetseMonyake")
+  ) %>% 
   gt_theme_538()
   
 tbl
-  
+
+gtsave(tbl, "prem_top_scorers.png")
