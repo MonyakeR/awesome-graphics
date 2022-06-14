@@ -20,3 +20,6 @@
 
 # 5. Longest Serving Active CEOs in the S&P 500
 ![CEO tenure table](longest-serving-active-ceos/longest_serving_active_ceos.png)
+
+# 6. Premier League Top Scorers (2021-2022)
+![Premier League Top Scorers](premier-league-top-scorers-2022/prem_top_scorers.png)
