@@ -118,5 +118,5 @@ ceo_tenure_tbl <- ceo_tenure %>%
 ceo_tenure_tbl
 
 # save table
-gtsave(ceo_tenure_tbl, "longest-serving-active-ceos/longest_serving_active_ceos.html")
+gtsave(ceo_tenure_tbl, "longest-serving-active-ceos/longest_serving_active_ceos.png")
 
