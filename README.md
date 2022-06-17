@@ -10,7 +10,7 @@
 
 ## 3. Debt drives students to despair
 
-![Money  owed by graduates to universities plot](sa-student-debt/student_debt.png) 
+![Money  owed by graduates to universities plot](sa-student-debt/student_debt.png)
 
 ![Money  owed by graduates to universities table](sa-student-debt/student_debt_tbl.png)
 
@@ -23,3 +23,6 @@
 
 # 6. Premier League Top Scorers (2021-2022)
 ![Premier League Top Scorers](premier-league-top-scorers-2022/prem_top_scorers.png)
+
+# 7. The cost of winning the Premier League
+![The cost of winning the premier league](cost-of-winning-the-premier-league/prem_cost.png)
