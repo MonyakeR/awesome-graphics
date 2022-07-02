@@ -26,3 +26,7 @@
 
 # 7. The cost of winning the Premier League
 ![The cost of winning the premier league](cost-of-winning-the-premier-league/prem_cost.png)
+
+# 8. Annual consumer price inflation (South Africa)
+![Annual consumer inflation](inflation-whats-rising-the-most/inflation_plot.png)
+![The biggest change in price](inflation-whats-rising-the-most/item_inflation_plot.png)
