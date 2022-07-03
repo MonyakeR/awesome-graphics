@@ -33,6 +33,7 @@ plt <- inflation %>%
     limits = c(0, 8),
     labels = scales::percent_format(scale = 1)
   ) +
+  geom_hline(yintercept = 0, size = 1.1) + 
   labs(
     title = "Annual consumer price inflation was 6,5% in May 2022",
     subtitle = "For the month of May 2022, the annual consumer price inflation broke through the upper limit of the \nSouth African Reserve Bank's monetary policy target range of 6%.",
@@ -45,7 +46,10 @@ plt <- inflation %>%
   annotate('point', x = as.Date('2022-05-31'), y = 6.5, color = "#0b6ba6", size=3) +
   annotate('label', x = as.Date('2021-12-31'), y = 7, label = "May 2022 \n6.5%", hjust = "right") + 
   annotate('label', x = as.Date('2019-09-30'), y = 5.7, label = "SARB target upper limit (6%)") +
-  theme_fivethirtyeight()
+  theme_fivethirtyeight() + 
+  theme(panel.background = element_rect(fill = "#ffffff"),
+        plot.background = element_rect(fill = "#ffffff"),
+        panel.grid.minor = element_blank())
 
 # save plot  
 ggsave('inflation_plot.png')
@@ -64,16 +68,23 @@ item_data %>%
   geom_col(fill = "#0b6ba6") +
   geom_text(
     aes(label = inflation_perc), 
-    hjust = 1, nudge_x = -0.5,
+    hjust = 1, nudge_x = -0.2,
     color = "white",
     size = 4, fontface = "bold"
   ) +
+  geom_vline(xintercept = 0) + 
   labs(
     title = "The biggest price changes between April and May",
     subtitle = "Percentage change in price indices, May 2022 compared with April 2022",
     caption = "Source: Stats SA \n Graphic: @RetseMonyake"
   ) + 
-  theme_fivethirtyeight()
+  theme_fivethirtyeight() + 
+  theme(panel.background = element_rect(fill = "#ffffff"),
+        plot.background = element_rect(fill = "#ffffff"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(),
+        axis.text.x = element_blank(),
+        panel.border = element_blank())
 
 # save plot
 ggsave('item_inflation_plot.png')
