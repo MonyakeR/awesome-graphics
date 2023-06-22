@@ -37,7 +37,14 @@ gt_tbl <- contribution %>%
     style = list(cell_text(weight = "bold")),
     locations = cells_body(
       columns = c("Player Goals Scored", "Team Goals Scored"),
-      rows = `Player Goals Scored` == 36 & `Team Goals Scored` == 94
+      rows = `Player Goals Scored` == 36 & `Team Goals Scored` == 94 
+    )
+  ) %>% 
+  tab_style(
+    style = list(cell_text(weight = "bold")),
+    locations = cells_body(
+      columns = c("Contribution"),
+      rows = Contribution > 0.40 
     )
   ) %>% 
   tab_source_note(
