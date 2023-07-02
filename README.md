@@ -1,4 +1,10 @@
-## Awesome graphics with code
+# Awesome graphics with code
+
+# 12. Recreation: Goldman Sachs Loses Top M&A Ranking
+
+[Original graphic can be found in this bloomberg article](https://www.bloomberg.com/news/articles/2023-06-29/goldman-sachs-loses-top-m-a-ranking-for-first-time-in-five-years)
+
+![JPMorgan takes No. 1 spot in global deal league tables](Recreations-with-Code/M&A%20Ranking/bloomberg_ma_rankng.png)
 
 ## 11. Contribution of top goal scorers in the premier league (2022/23)
 
