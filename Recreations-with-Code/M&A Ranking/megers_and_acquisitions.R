@@ -43,7 +43,8 @@ tbl <- ma %>%
   ) %>%
   cols_width(
     total_deal_plot ~ px(150),
-    Change ~ px(150)
+    Change ~ px(150),
+    Bank ~ px(200)
   ) %>% 
   cols_align(
     columns = `Total Deal Value`,
