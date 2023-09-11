@@ -2,7 +2,7 @@
 
 # 13. Brazil top scorers of all time
 
-![Brazil top scorers of all time](Data-and-Code/brazil-top-scorers-of all-time/brazil_top_scorer.png)
+![Brazil top scorers of all time](Data-and-Code/brazil-top-scorers-of-all-time/brazil_top_scorer.png)
 
 # 12. Recreation: Goldman Sachs Loses Top M&A Ranking
 
