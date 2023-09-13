@@ -7,12 +7,12 @@ library(ggrepel)
 library(showtext)
 
 # set up font
-font_add_google(name = "Chivo", family = "chivo")
+font_add_google(name = "Archivo", family = "archivo")
 ## Automatically use showtext to render text
 showtext_auto()
 
 # read in the data
-top_scorers_raw <- read_csv("brazil-top-scorers-of all-time/data/brazil-top-scorers-of-all-time.csv")
+top_scorers_raw <- read_csv("Data-and-Code/brazil-top-scorers-of-all-time/data/brazil-top-scorers-of-all-time.csv")
 
 # exploratory data analysis
 top_scorers <- top_scorers_raw %>% 
@@ -36,7 +36,7 @@ p <- ggplot(data = top_scorers, mapping = aes(x = Caps, y = Goals, label = label
   scale_colour_manual(values = c("active" = "#0086b3", "inactive" = "#A6A6A6")) +
   labs(
     title = "<strong>Neymar is now Brazil\\'s Leading Goal Scorer</strong>",
-    subtitle = "It has taken Neymar 33 more games to overtake Pele as Brazil\\'s Leading Goal Scorer.<br/>As the only <span style = 'color:#0086b3;'>active</span> player in the top 10, he is well-positioned to retain the record for an extended period",
+    subtitle = "It has taken Neymar 33 more games to overtake Pele as Brazil\\'s Leading Goal Scorer.<br/>As the only <span style = 'color:#0086b3;'>active</span> player in the top 10, he is well-positioned to retain the record for an extended period.",
     caption = "<br><i>As per: 11 September 2023</i><br/>Graphic: @RetseMonyake<br>"
   ) +
   theme_minimal() +
@@ -46,9 +46,9 @@ p <- ggplot(data = top_scorers, mapping = aes(x = Caps, y = Goals, label = label
     legend.position = "none",
     panel.grid.minor.x = element_blank(),
     panel.grid.minor.y = element_blank(),
-    plot.title=element_textbox(family = "chivo", size=36, padding = unit(c(15, 0, 0, 0), "pt"),),
-    plot.subtitle = element_textbox(family = "chivo", size = 18, lineheight = 1.1, colour = "#3C4048"),
-    plot.caption = element_textbox(family = "chivo", size = 11, lineheight = 1.2, hjust = 0),
+    plot.title=element_textbox(family = "archivo", size=36, padding = unit(c(15, 0, 0, 0), "pt"),),
+    plot.subtitle = element_textbox(family = "archivo", size = 18, lineheight = 1.1, colour = "#3C4048"),
+    plot.caption = element_textbox(family = "archivo", size = 11, lineheight = 1.2, hjust = 0),
     plot.background = element_rect(colour = "#fefeff"),
     plot.margin = margin(0, 5, 0, 5),
     axis.text = element_text(size = 12),
@@ -59,4 +59,4 @@ p <- ggplot(data = top_scorers, mapping = aes(x = Caps, y = Goals, label = label
 
 p
 
-ggsave("Data-and-Code/brazil-top-scorers-of all-time/brazil_top_scorer.pdf", width = 15, height = 10)
+ggsave("Data-and-Code/brazil-top-scorers-of-all-time/brazil_top_scorer.pdf", width = 15, height = 10)
