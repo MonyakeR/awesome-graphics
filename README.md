@@ -1,5 +1,11 @@
 # Awesome graphics with code
 
+# 14 Premier League Stadium Capacities - 2023/24
+
+![Premier League Stadium Capacities - plot](Data-and-Code/premier-league-stadiums/prem_capacity.png)
+
+![Premier League Stadium Capacities - table](Data-and-Code/premier-league-stadiums/stadiums.png)
+
 # 13. Brazil top scorers of all time
 
 ![Brazil top scorers of all time](Data-and-Code/brazil-top-scorers-of-all-time/brazil_top_scorer.png)
