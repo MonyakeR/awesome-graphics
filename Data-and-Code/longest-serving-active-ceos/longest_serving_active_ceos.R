@@ -6,7 +6,7 @@ library(gt)
 library(stringr)
 
 # load the data
-ceo_tenure <- read_csv("Data & Code/longest-serving-active-ceos/longest_serving_active_ceos.csv")
+ceo_tenure <- read_csv("Data-and-Code/longest-serving-active-ceos/longest_serving_active_ceos.csv")
 
 # function to create bar chart
 bar_chart <- function(label, height = "15px",fill = "#00bfc4") {
@@ -18,7 +18,6 @@ bar_chart <- function(label, height = "15px",fill = "#00bfc4") {
     "<div style='display:flex;align-items:right';>{bar}</div>"
   ) %>%
     gt::html()
-  
 }
 
 # create a column for the bar chart
@@ -60,6 +59,12 @@ ceo_tenure_tbl <- ceo_tenure %>%
   tab_header(
     title = md("**Longest Serving Active CEOs in the S&P 500**"),
     subtitle = md("Warren Buffett is the longest serving leader having maintained his position for over half a century")
+  ) %>%
+  opt_table_font(
+    font = list(
+      google_font(name = "Archivo")
+    ),
+    weight = 400
   ) %>%
   cols_merge(
     columns = c(CEO, Company)
@@ -106,17 +111,53 @@ ceo_tenure_tbl <- ceo_tenure %>%
       )
     )
   ) %>% 
+  tab_style(
+    style = list(
+      cell_borders(
+        sides = "top", color = "black", weight = px(0)
+      ),
+      cell_text(
+        transform = "uppercase",
+        v_align = "bottom",
+        size = px(14),
+        weight = 200
+      )
+    ),
+    locations = cells_column_labels(columns = gt::everything())
+  ) %>%
   tab_options(
-    table.border.top.style = "hidden",
-    table.border.bottom.style = "hidden"
+    column_labels.background.color = "white",
+    data_row.padding = px(3),
+    heading.border.bottom.style = "none",
+    table.border.top.width = px(3),
+    table.border.top.style = "none",
+    table.border.bottom.style = "none",
+    column_labels.font.weight = "normal",
+    column_labels.border.top.style = "none",
+    column_labels.border.bottom.width = px(2),
+    column_labels.border.bottom.color = "black",
+    stub.border.color = "white",
+    stub.border.width = px(0),
+    source_notes.font.size = 12,
+    source_notes.border.lr.style = "none",
+    table.font.size = 16,
+    heading.align = "left"
   ) %>% 
+  opt_css(
+    "tbody tr:last-child {
+        border-bottom: 2px solid #ffffff00;
+    }
+    ",
+    add = TRUE
+  ) %>%
   tab_source_note(
-    source_note = md("Source: Visual Capitalist, as of 2021")
-  )
+    source_note = md("*Source: Visual Capitalist, as of 2021*")
+  ) %>% 
+  tab_source_note(source_note = "Graphic: @RetseMonyake")
   
 # show table
 ceo_tenure_tbl
 
 # save table
-gtsave(ceo_tenure_tbl, "longest-serving-active-ceos/longest_serving_active_ceos.png")
+gtsave(ceo_tenure_tbl, "Data-and-Code/longest-serving-active-ceos/longest_serving_active_ceos.png")
 

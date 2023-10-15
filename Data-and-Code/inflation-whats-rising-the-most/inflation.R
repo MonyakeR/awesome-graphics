@@ -1,9 +1,15 @@
 library(tidyverse)
 library(lubridate)
 library(ggthemes)
+library(showtext)
+
+# set up font
+font_add_google(name = "Archivo", family = "archivo")
+## Automatically use showtext to render text
+showtext_auto()
 
 # load the data
-inflation <- read_csv('Data & Code/inflation-whats-rising-the-most/South African CPI headline year-on-year rates.csv')
+inflation <- read_csv('Data-and-Code/inflation-whats-rising-the-most/South African CPI headline year-on-year rates.csv')
 
 # data wrangling
 inflation <- inflation %>% 
@@ -23,7 +29,7 @@ inflation <- inflation %>%
 plt <- inflation %>% 
   ggplot(aes(x = date, y = inflation_rate)) + 
   geom_area(fill = "#85b4d3") +
-  geom_line(color = "#0b6ba6", size = 1.5) +
+  geom_line(color = "#0b6ba6", linewidth = 1.5) +
   scale_x_date(
     limits = c(as.Date("2010-01-31"), as.Date("2022-06-30")),
     expand = c(0, 0)
@@ -47,9 +53,13 @@ plt <- inflation %>%
   annotate('label', x = as.Date('2021-12-31'), y = 7, label = "May 2022 \n6.5%", hjust = "right") + 
   annotate('label', x = as.Date('2019-09-30'), y = 5.7, label = "SARB target upper limit (6%)") +
   theme_fivethirtyeight() + 
-  theme(panel.background = element_rect(fill = "#ffffff"),
-        plot.background = element_rect(fill = "#ffffff"),
-        panel.grid.minor = element_blank())
+  theme(
+    panel.background = element_rect(fill = "#ffffff"),
+    plot.background = element_rect(fill = "#ffffff"),
+    panel.grid.minor = element_blank()
+  )
+
+plt
 
 # save plot  
 ggsave('inflation_plot.png')

@@ -5,8 +5,9 @@ library(ggplot2)
 library(bbplot)
 library(scales)
 
+
 # read in the data
-unemployment <- read_csv("Data & Code/sa-unemployment/sa_unemployment.csv")
+unemployment <- read_csv("Data-and-Code/sa-unemployment/sa_unemployment.csv")
 
 # prepare the data
 unemployment <- unemployment %>% 
@@ -37,7 +38,7 @@ unemployment_plot <- ggplot(unemployment, aes(x = date, y = unemployment_rate)) 
 finalise_plot(
   plot_name = unemployment_plot,
   source = "Source: Statistics South Africa",
-  save_filepath = "sa-unemployment/sa_unemployment.png",
+  save_filepath = "Data-and-Code/sa-unemployment/sa_unemployment.png",
   width_pixels = 810,
   height_pixels = 550
 )
