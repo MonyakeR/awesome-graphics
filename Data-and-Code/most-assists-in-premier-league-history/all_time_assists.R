@@ -23,6 +23,7 @@ assists_tbl <- assists %>%
 
 # graphic creation ----
 tbl_assists <- gt(data = assists_tbl, id = "assists") %>% 
+  opt_row_striping() %>% 
   tab_header(
     title = md("**Premiar league all time assists**")
   ) %>%
@@ -57,6 +58,12 @@ tbl_assists <- gt(data = assists_tbl, id = "assists") %>%
     source_note = md("*Source: Premier League, As of **11 February 2024***")
   ) %>% 
   tab_source_note(source_note = md("*Graphic: @RetseMonyake*")) %>% 
+  tab_options(
+    row.striping.background_color = "#F0F0F0F0",
+    table.border.top.color = "#ffffff",
+    table.border.bottom.color = "#ffffff",
+    table_body.hlines.color = "#ffffff"
+  ) %>% 
   gt_theme_custom()
 
   # save the graphic ----
