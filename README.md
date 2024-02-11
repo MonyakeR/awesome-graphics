@@ -1,10 +1,14 @@
 # Awesome graphics with code
 
-# 15 Deloitte Football Money League 2024
+# 16. Premier League All Time Assists
+
+![](Data-and-Code/most-assists-in-premier-league-history/all_time_assists.png)
+
+# 15. Deloitte Football Money League 2024
 
 ![Deloitte Football Money League 2024](Data-and-Code/deloitte-football-money-league-2024/deloitte_football_money_league.png)
 
-# 14 Premier League Stadium Capacities - 2023/24
+# 14. Premier League Stadium Capacities - 2023/24
 
 ![Premier League Stadium Capacities - plot](Data-and-Code/premier-league-stadiums/prem_capacity.png)
 

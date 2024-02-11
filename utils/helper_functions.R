@@ -68,7 +68,12 @@ gt_theme_custom <- function(gt_object, ..., quiet = FALSE) {
     tab_options(
       column_labels.background.color = "white",
       data_row.padding = px(3),
+      heading.align = "left",
+      heading.title.font.size = 24,
       heading.border.bottom.style = "none",
+      heading.subtitle.font.size = 15.3,
+      table.font.size = 14,
+      table.font.weight = "450",
       table.border.top.width = px(3),
       table.border.top.style = "none", # transparent
       table.border.bottom.style = "none",
@@ -82,10 +87,8 @@ gt_theme_custom <- function(gt_object, ..., quiet = FALSE) {
       row_group.border.bottom.color = "white",
       stub.border.color = "white",
       stub.border.width = px(0),
-      source_notes.font.size = 12,
+      source_notes.font.size = 13,
       source_notes.border.lr.style = "none",
-      table.font.size = 16,
-      heading.align = "left",
       ...
     ) %>%
     opt_css(
