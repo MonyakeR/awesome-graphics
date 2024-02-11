@@ -28,7 +28,7 @@ tbl_assists <- gt(data = assists_tbl, id = "assists") %>%
   ) %>%
   cols_label(
     assists_per_game = "Assists Per Game",
-    assists_plot = "Total Assists",
+    assists_plot = md("**Total Assists**"),
     Assists = ""
   ) %>% 
   gt_plt_bar(
@@ -48,7 +48,11 @@ tbl_assists <- gt(data = assists_tbl, id = "assists") %>%
     columns = c(Assists),
     align = "left"
   ) %>% 
-  gt_color_rows(columns = c("assists_per_game"), palette = "ggsci::teal_material") %>% 
+  gt_color_rows(columns = c("assists_per_game"), palette = "ggsci::teal_material") %>%
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_body(columns = Assists)
+  ) %>% 
   tab_source_note(
     source_note = md("*Source: Premier League, As of **11 February 2024***")
   ) %>% 
