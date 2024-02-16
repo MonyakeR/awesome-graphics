@@ -25,7 +25,7 @@ assists_tbl <- assists %>%
 tbl_assists <- gt(data = assists_tbl, id = "assists") %>% 
   opt_row_striping() %>% 
   tab_header(
-    title = md("**Premiar league all time assists**")
+    title = md("**Premier league all time assists**")
   ) %>%
   cols_label(
     assists_per_game = "Assists Per Game",
